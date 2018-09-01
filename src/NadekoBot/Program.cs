@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace NadekoBot
+namespace serenity
 {
     public sealed class Program
     {
