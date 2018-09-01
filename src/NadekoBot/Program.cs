@@ -12,7 +12,7 @@ namespace serenity
                 && int.TryParse(args[0], out int shardId)
                 && int.TryParse(args[1], out int parentProcessId))
             {
-                await new NadekoBot(shardId, parentProcessId)
+                await new NadekoBot(parentProcessId)
                     .RunAndBlockAsync();
             }
             else
