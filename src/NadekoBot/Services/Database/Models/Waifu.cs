@@ -1,9 +1,5 @@
 ﻿using NadekoBot.Extensions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NadekoBot.Services.Database.Models
 {
@@ -19,6 +15,7 @@ namespace NadekoBot.Services.Database.Models
         public DiscordUser Affinity { get; set; }
 
         public int Price { get; set; }
+        public List<WaifuItem> Items { get; set; } = new List<WaifuItem>();
 
         public override string ToString()
         {

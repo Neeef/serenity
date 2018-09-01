@@ -1,9 +1,5 @@
 ﻿using NadekoBot.Services.Database.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Discord;
 
@@ -19,7 +15,15 @@ namespace NadekoBot.Services.Database.Repositories.Impl
         {
             DiscordUser toReturn;
 
-            toReturn = _set.FirstOrDefault(u => u.UserId == original.Id);
+            toReturn = _set.Include(x => x.Club)
+                .FirstOrDefault(u => u.UserId == original.Id);
+
+            if (toReturn != null)
+            {
+                toReturn.AvatarId = original.AvatarId;
+                toReturn.Username = original.Username;
+                toReturn.Discriminator = original.Discriminator;
+            }
 
             if (toReturn == null)
                 _set.Add(toReturn = new DiscordUser()
@@ -28,6 +32,7 @@ namespace NadekoBot.Services.Database.Repositories.Impl
                     Discriminator = original.Discriminator,
                     UserId = original.Id,
                     Username = original.Username,
+                    Club = null,
                 });
 
             return toReturn;
